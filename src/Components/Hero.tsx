@@ -1,5 +1,5 @@
 import type { FC } from "react";
-
+import bannerStack from "../assets/banner-stack.png";
 const Hero: FC = () => {
   return (
     <section
@@ -8,7 +8,6 @@ const Hero: FC = () => {
     >
       <div className="mx-auto grid w-[92%] max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-2">
         {/* Left Content */}
-
         <div>
           <span className="mb-5 inline-block rounded-full bg-violet-100 px-4 py-2 text-sm font-semibold text-violet-600">
             ✨ Learn • Build • Grow
@@ -44,9 +43,12 @@ const Hero: FC = () => {
         </div>
 
         {/* Right Illustration */}
-
-        <div>
-          <img src="../assets/banner-stack.png" alt="" />
+        <div className="flex min-h-[380px] items-center justify-center">
+          <img
+            src={bannerStack}
+            alt="Development stack illustration"
+            className="h-full w-full object-contain"
+          />
         </div>
       </div>
     </section>
