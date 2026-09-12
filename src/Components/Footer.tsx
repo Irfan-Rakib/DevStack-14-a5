@@ -128,7 +128,6 @@ const Footer: FC = () => {
 
         <div className="flex flex-col items-center justify-between gap-4 pt-7 text-center text-sm text-slate-500 md:flex-row md:text-left">
           <p>© 2026 Dev Stack. All rights reserved.</p>
-
           <div className="flex gap-5">
             <a href="#" className="hover:text-white">
               Privacy
