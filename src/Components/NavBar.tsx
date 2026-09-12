@@ -1,5 +1,5 @@
 import { useState, type FC } from "react";
-
+import Logo from "../assets/logo-text.png";
 const Navbar: FC = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
@@ -23,13 +23,7 @@ const Navbar: FC = () => {
         {/* Brand */}
 
         <a href="#home" className="flex items-center gap-2">
-          <div className="brand-gradient flex h-10 w-10 items-center justify-center rounded-xl font-bold text-white shadow-md">
-            D
-          </div>
-
-          <span className="hidden text-xl font-bold text-slate-800 sm:block">
-            DevStack
-          </span>
+          <img src={Logo} alt="DevStack Logo" />
         </a>
 
         {/* Desktop Navigation */}
