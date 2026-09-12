@@ -28,7 +28,7 @@ const Navbar: FC = () => {
           </div>
 
           <span className="hidden text-xl font-bold text-slate-800 sm:block">
-            Dev Stack
+            DevStack
           </span>
         </a>
 
