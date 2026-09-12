@@ -8,8 +8,6 @@ Users can browse technologies, view their details, add technologies to their per
 
 ## 🔗 Live Preview
 
-Add your live website link here:
-
 👉 [Live Demo](https://devstack-14a5.netlify.app/)
 
 ---
@@ -44,8 +42,6 @@ Users can select technologies and add them to the **Your Stack** section.
 
 The same technology cannot be added twice.
 
----
-
 ### 2️⃣ Add and Remove Technologies
 
 Users can:
@@ -55,8 +51,6 @@ Users can:
 - Remove all technologies at once
 
 Toast notifications provide feedback for every action.
-
----
 
 ### 3️⃣ Filter Technologies by Category
 
@@ -106,7 +100,7 @@ The project uses **React Toastify** to show notifications when:
 
 ## 📂 Project Structure
 
-````text
+```text
 dev-stack-builder/
 │
 ├── public/
@@ -135,36 +129,70 @@ dev-stack-builder/
 ├── package.json
 ├── vite.config.ts
 └── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# Clone the repository
+git clone https://github.com/Irfan-Rakib/DevStack-14-a5.git
+
+# Navigate to the project folder
+cd devStack
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+---
 
 ## 📚 React Concepts Q&A
 
 **1. What is JSX, and why is it used in React?**
-JSX is a syntax that lets you write HTML-like code inside JavaScript. React uses it because it makes writing and reading UI code easier — instead of building elements with plain JavaScript functions, you can write something that looks like HTML directly in your component.
+
+JSX is a syntax that lets you write HTML-like code inside JavaScript. React uses it because it makes writing and reading UI code easier — instead of building elements with plain JavaScript functions, I can write markup that looks like HTML directly inside components like `TechnologyCard.tsx` and `Hero.tsx`.
 
 **2. What is the difference between props and state?**
-Props are data passed _into_ a component from its parent, and the component can't change them. State is data that lives _inside_ a component and can change over time, usually because of user actions or events.
+
+Props are data passed _into_ a component from its parent, and the component receiving them can't change them. State is data that lives _inside_ a component and can change over time. For example, the list of technologies passed to `TechnologyCard` comes in as props, while the "Your Stack" list in `App.tsx` is state, since it changes whenever the user adds or removes a technology.
 
 **3. What does the `useState` hook do, and where did you use it in this project?**
-`useState` lets a component remember and update values between renders. In this project, it was used to keep track of things like the list of items, form input values, and whether something is loading.
+
+`useState` lets a component remember and update values between renders. In this project, it's used to track the full list of technologies fetched from the JSON file, the technologies the user has added to their stack, the currently selected category filter, and the loading state while data is being fetched.
 
 **4. What does the `useEffect` hook do, and why did you need it to load the JSON data?**
-`useEffect` lets you run code in response to a component rendering or a value changing — like fetching data, setting timers, or updating the page title. It was needed to load the JSON data because fetching data is a "side effect" that should happen after the component mounts, not during rendering.
+
+`useEffect` lets you run code in response to a component rendering or a value changing — things like fetching data, setting timers, or subscribing to events. It was needed here because fetching `technologies.json` is a side effect: it shouldn't run during rendering itself, but _after_ the component mounts. `useEffect` runs the fetch once when the app loads, updates the state with the result, and turns off the loading spinner.
 
 **5. Why does every item in a `.map()` list need a unique `key` prop?**
-React uses the `key` to keep track of which item is which when the list changes. Without unique keys, React can get confused about which items were added, removed, or updated, which can cause bugs or slow rendering.
+
+React uses the `key` to keep track of which item is which when a list changes. Without unique keys (like each technology's `id`), React can't tell which cards were added, removed, or reordered, which can lead to bugs, incorrect UI updates, or unnecessary re-renders.
 
 **6. What is conditional rendering? Show one place you used it (example: the empty stack message).**
-Conditional rendering means showing different UI depending on a condition. For example:
+
+Conditional rendering means showing different UI depending on a condition. In this project, the `StackSidebar` checks whether the user's stack is empty and shows a friendly message instead of an empty list:
 
 ```jsx
 {
-  items.length === 0 ? <p>Your stack is empty!</p> : <ItemList items={items} />;
+  stack.length === 0 ? (
+    <p>Your stack is empty. Start adding technologies!</p>
+  ) : (
+    stack.map((tech) => <TechnologyCard key={tech.id} technology={tech} />)
+  );
 }
-````
-
-Here, if there are no items, a friendly empty-state message is shown instead of an empty list.
+```
 
 **7. How do you pass data from a parent component to a child component, and how does a child send something back to the parent?**
-A parent passes data down to a child using props, like `<Child data={value} />`. To send data back up, the parent passes a function as a prop to the child, and the child calls that function (often with new data) whenever it needs to communicate something back — this is sometimes called "lifting state up."
+
+A parent passes data down to a child using props, like `<TechnologyCard technology={tech} />`. To send data back up, the parent passes a function as a prop to the child — for example, `onAddToStack` — and the child calls that function (often with the selected technology as an argument) whenever the user clicks "Add." This pattern is often called "lifting state up," since the actual state update happens in the parent (`App.tsx`), not the child.
 
 ---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
