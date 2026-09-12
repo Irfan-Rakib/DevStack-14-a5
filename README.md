@@ -10,7 +10,7 @@ Users can browse technologies, view their details, add technologies to their per
 
 Add your live website link here:
 
-👉 [Live Demo](https:www.Devstack.14a5.netlify.app)
+👉 [Live Demo](https://devstack-14a5.netlify.app/)
 
 ---
 
